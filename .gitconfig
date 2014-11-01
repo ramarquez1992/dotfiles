@@ -1,0 +1,7 @@
+[user]
+	name = Richard Marquez
+	email = rmarquez14@winona.edu
+[filter "media"]
+	required = true
+	clean = git media clean %f
+	smudge = git media smudge %f
