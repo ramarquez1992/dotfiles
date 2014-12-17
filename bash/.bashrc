@@ -128,6 +128,7 @@ fi
 export PAGER="most"
 alias ls="ls -lGFo"
 alias reboot="sudo reboot"
+alias linode="ssh root@104.237.129.202"
 
 
 # Colors
