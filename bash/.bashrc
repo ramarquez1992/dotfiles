@@ -128,17 +128,9 @@ fi
 export PAGER="most"
 alias ls="ls -lGFo"
 alias reboot="sudo reboot"
-alias linode="ssh root@104.237.129.202"
 
-
-# Colors
-RED="\e[1;31m"
-GOLD="\e[1;33m"
-WHITE="\e[0;37m"
-
-
-# BASH Prompt
-rootCheck="${GOLD}#"
-returnCheck="\`if [ \$? -eq 0 ]; then echo '${GOLD}'#; else echo '${RED}'#;fi\`"
-
-PS1="$rootCheck$returnCheck ${WHITE}"
+# Prompts
+# Normal
+PS1='\[\e[4;32m\][\u@\h]\[\e[m\] \[\e[1;33m\][\W]\[\e[m\] \[\e[1;32m\]\$\[\e[m\] '
+# Root
+#PS1='\[\e[4;31m\][\u@\h]\[\e[m\] \[\e[1;33m\][\W]\[\e[m\] \[\e[1;31m\]\$\[\e[m\] '

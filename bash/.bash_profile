@@ -1,1 +1,2 @@
-/usr/local/bin/dvtm && exit
+/bin/bash && exit
+#/usr/local/bin/dvtm && exit
