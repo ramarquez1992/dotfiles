@@ -1,0 +1,56 @@
+##
+# Host Database
+#
+# localhost is used to configure the loopback interface
+# when the system is booting.  Do not change this entry.
+##
+127.0.0.1	localhost
+255.255.255.255	broadcasthost
+::1             localhost 
+
+# Stop.
+127.0.0.1 megavideo.sc 
+127.0.0.1 stream-tv1.net
+127.0.0.1 vidbull.com
+127.0.0.1 gorillavid.in
+127.0.0.1 exashare.com
+127.0.0.1 mightyupload.com
+127.0.0.1 sockshare.is sockshare.tv www.sockshare.is www.sockshare.tv
+127.0.0.1 firedrive.com www.firedrive.com firedriveputlocker.com
+127.0.0.1 videoweed.es www.videoweed.es
+127.0.0.1 vidxden.com www.vidxden.com
+127.0.0.1 novamov.com www.novamov.com
+127.0.0.1 megashare.sc 
+127.0.0.1 geektv.me
+127.0.0.1 watchseries1.eu
+127.0.0.1 watchseries-online.ch
+127.0.0.1 projectfreetv.so
+127.0.0.1 tubeplus.is
+127.0.0.1 hdmovie14.net
+127.0.0.1 veoh.com www.veoh.com
+127.0.0.1 watchonlinenow.net
+127.0.0.1 movie2kto.ws
+127.0.0.1 movlocker.com
+127.0.0.1 vudu.com
+127.0.0.1 pubfilm.com www.pubfilm.com
+127.0.0.1 moviesub.net www.moviesub.net
+127.0.0.1 series-cravings.me
+127.0.0.1 streamtuner.me
+127.0.0.1 sidereel.com www.sidereel.com
+127.0.0.1 free-tv-video-onlne.info
+127.0.0.1 watch-series-tv.to
+127.0.0.1 spacemov.com www.spacemov.com
+127.0.0.1 free-tv-video-online.info
+127.0.0.1 playmoviez.net
+127.0.0.1 xmovies8.tv www.xmovies8.tv
+127.0.0.1 solarmovie.cz www.solarmovie.cz
+127.0.0.1 putlocker.ms putlocker.tn putlockerx.com www.putlockerx.com putlocker.is
+127.0.0.1 facebook.com www.facebook.com
+127.0.0.1 ign.com www.ign.com
+127.0.0.1 news.ycombinator.com
+127.0.0.1 arstechnica.com www.arstechnica.com
+127.0.0.1 cnet.com www.cnet.com
+127.0.0.1 infoworld.com www.infoworld.com
+127.0.0.1 theverge.com www.theverge.com
+
+
