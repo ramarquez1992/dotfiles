@@ -1,0 +1,13 @@
+var at = (n) => {
+  const sqrt5 = Math.sqrt(5);
+
+  return (1/sqrt5) * ( Math.pow( (1+sqrt5) / 2, n) - Math.pow( (1-sqrt5) / 2, n) );
+}
+
+var fib = (n) => {
+  return (n <= 2) ? 1 : (fib(n-1) + fib(n-2));
+}
+
+module.exports.fib = fib;
+module.exports.at = at;
+

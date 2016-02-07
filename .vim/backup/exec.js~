@@ -1,0 +1,12 @@
+var exec = require('child_process').exec;
+
+exec('ls -la', function(err, stdout, stderr) {
+  if (err !== null) { onErr(err); }
+  console.log(stdout);
+});
+
+function onErr(err) {
+  console.log('ERROR: ' + err);
+  return 1;
+}
+

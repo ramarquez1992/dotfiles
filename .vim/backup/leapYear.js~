@@ -1,0 +1,38 @@
+// Reply either Leap Year or Not a Leap Year, given a year.
+// It is a leap year if the year is divisible by 4 but not by 100
+// A year that is divisible by both 4 and 100 is a leap year if it is also
+// divisible by 400
+// e.g. 1976, 2000, !1800
+
+var year = verifyInput();
+var output = '';
+
+if (isLeapYear(year)) {
+  output = 'Leap Year';
+} else {
+  output = 'Not a Leap Year';
+}
+
+console.log(output);
+
+
+function verifyInput() {
+  if (process.argv.length != 3 || isNaN(process.argv[2])) {
+    console.log('USAGE: node leapYear.js <YEAR>');
+    process.exit(1);
+  }
+
+  return parseInt(process.argv[2]);
+}
+
+function isLeapYear(year) {
+  var result = false;
+
+  if (year % 4 == 0) {
+    if (year % 100 != 0) result = true;
+    else if (year % 400 == 0) result = true;
+  }
+
+  return result;
+}
+

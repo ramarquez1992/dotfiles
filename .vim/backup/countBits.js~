@@ -1,0 +1,13 @@
+var countBits = (n) => {
+  var numBits = 0;
+  var sum = 0;
+
+  while (sum < n) {
+    sum += Math.pow(2, numBits++);
+  }
+
+  return numBits;
+}
+  
+module.exports = countBits
+

@@ -1,0 +1,50 @@
+/*
+ * Author: Richard Marquez
+ * Date: 02/05/2016
+ *
+ * Description: Given a sorted array of strings, and a target item,
+ * find out if target exists in array.
+ */
+
+public class StrSearch {
+
+  public static void main(String[] args) {
+    // Input arrays and targets for testing
+    String[] input = { "Ada", "Ben", "Carol", "Dave", "Ed", "Frank", "Gerri", "Helen", "Iggy", "Joan" };
+
+    String target1 = "Frank";
+    String target2 = "Ian";
+
+    // Search array for targets and store results
+    boolean result1 = search(input, target1);
+    boolean result2 = search(input, target2);
+
+    // Print results
+    System.out.println(result1);
+    System.out.println(result2);
+  }
+
+  public static boolean search(String[] arr, String target) {
+    boolean result = false;
+
+    // Loop through array a maximum of array.length times
+    for (int i = 0; i < arr.length; i++) {
+
+      // If we found the target element, stop searching and set result to true
+      if (arr[i].equals(target)) {
+        result = true;
+        break;
+
+      // Otherwise, if the current element we are looking at is greater than
+      // our target element, stop searching (result will be false)
+      } else if (target.compareTo(arr[i]) < 1) {
+        break;
+      }
+
+    }
+
+    return result;
+  }
+
+}
+

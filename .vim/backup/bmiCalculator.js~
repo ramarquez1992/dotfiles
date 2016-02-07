@@ -1,0 +1,35 @@
+// A quantity known as the body mass index (BMI) is used to calculate the risk
+// of weight-related problems.
+// BMI = w / ((h/100.0)^2)
+// w is weight in kg and h is height in cm. A BMI of ~20-25 is considered
+// "normal". Accept w and h and output BMI
+
+var inc = require('./inc.js');
+var prompt = require('prompt');
+
+getBMI(function(bmi) {
+  console.log('BMI: ' + bmi.toFixed(2));
+});
+
+function getBMI(callback) {
+  getPerson(function(person) {
+    const bmi = person.weight / Math.pow( (person.height/100), 2);
+    callback(bmi);
+  });
+
+}
+
+function getPerson(callback) {
+  prompt.get(['weight', 'height'], function(err, result) {
+    if (err) return onErr(err);
+
+    const person = {
+      weight: parseInt(result.weight),
+      height: parseInt(result.height)
+    }
+
+   callback(person); 
+  });
+
+}
+

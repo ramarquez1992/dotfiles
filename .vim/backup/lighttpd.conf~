@@ -1,0 +1,13 @@
+server.document-root = "/Users/dick/Code/miller/"
+
+server.port = 80
+
+mimetype.assign = (
+  ".html" => "text/html",
+  ".txt" => "text/plain",
+  ".jpeg" => "image/jpeg",
+  ".jpg" => "image/jpeg",
+  ".png" => "image/png"
+)
+
+index-file.names = ( "index.html" )

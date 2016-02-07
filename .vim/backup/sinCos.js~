@@ -1,0 +1,67 @@
+//'use strict';
+
+function verifyInput() {
+  if (process.argv.length != 3 || isNaN(process.argv[2])) {
+    console.log('USAGE: node sinCos.js <NUM>');
+    process.exit(1);
+  }
+
+  return parseFloat(process.argv[2]);
+}
+
+function factorial(n) {
+  return (n > 1)? (n * factorial(n-1)) : 1;
+}
+
+function sin(x) {
+  var total = x;
+  var y = 3;
+  var sign = -1;
+
+  var nextTotal = total;
+
+  while (true) {
+    var num = Math.pow(x, y);
+    var den = factorial(y);
+
+    if (num >= Number.POSITIVE_INFINITY || den >= Number.POSITIVE_INFINITY) break;
+
+    var quotient = num / den;
+    nextTotal = total + ( sign * quotient );
+
+    total = nextTotal;
+    sign *= -1;
+    y += 2;
+  }
+
+  return total;
+}
+
+function cos(x) {
+  var total = 1;
+  var y = 2;
+  var sign = -1;
+
+  var nextTotal = total;
+
+  while (true) {
+    var num = Math.pow(x, y);
+    var den = factorial(y);
+
+    if (num >= Number.POSITIVE_INFINITY || den >= Number.POSITIVE_INFINITY) break;
+
+    var quotient = num / den;
+    nextTotal = total + ( sign * quotient );
+
+    total = nextTotal;
+    sign *= -1;
+    y += 2;
+  }
+
+  return total;
+}
+
+var n = verifyInput();
+console.log('sin(' + n + ') = ' + sin(n));
+console.log('cos(' + n + ') = ' + cos(n));
+

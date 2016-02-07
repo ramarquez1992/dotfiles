@@ -1,0 +1,45 @@
+exports = (typeof window === 'undefined') ? global : window;
+
+exports.regexAnswers = {
+  containsNumber : function(str) {
+                     var r = /[0-9]/;
+                     return r.test(str);
+
+  },
+
+  containsRepeatingLetter : function(str) {
+                              var r = /([a-zA-Z])\1+/;
+                              return r.test(str);
+
+  },
+
+  endsWithVowel : function(str) {
+                    var r = /[aeiouAEIOU]$/;
+                    return r.test(str);
+
+  },
+
+  captureThreeNumbers : function(str) {
+                    var r = /\d{3}/;
+                    var results = r.exec(str);
+
+                    if (results) {
+                      return results[0];
+                    } else {
+                      return false;
+                    }
+
+  },
+
+  matchesPattern : function(str) {
+                    var r = /^\d{3}-\d{3}-\d{4}$/;
+                    return r.test(str);
+
+  },
+  isUSD : function(str) {
+                    console.log(str);
+                    var r = /^\$(\d{1,3})(,\d{3})*(\.\d{2})?$/;
+                    return r.test(str);
+
+  }
+};

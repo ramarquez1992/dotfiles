@@ -1,0 +1,5 @@
+// find number of primes between 2 and n (inclusive)
+function primesTo(n) {
+  return n / Math.log(n);
+}
+

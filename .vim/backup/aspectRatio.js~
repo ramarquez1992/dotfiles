@@ -1,0 +1,55 @@
+'use strict';
+
+const Box = {
+  min: { x: -3, y: -1 },
+  max: { x: 5, y: 2 },
+
+  getWidth: () => {
+    return Math.abs(this.min.x) + this.max.x;
+  },
+
+  getHeight: () => {
+    return this.max.y + Math.abs(this.min.y);
+  },
+
+  getAR: () => {
+    return this.getWidth() / this.getHeight();
+  },
+
+  convertAR: (desiredAR) => {
+    var currentAR = this.getAR();
+    
+    if (currentAR > desiredAR) {
+      const newHeight = this.convertHeight(desiredAR);
+      this.makeTaller(newHeight);
+    } else if (currentAR < desiredAR) {
+      const newWidth = this.convertWidth(desiredAR);
+      this.makeWider(newWidth);
+    }
+  },
+
+  makeWider: (newWidth) => {
+    var delta = (newWidth - this.getWidth()) / 2;
+    this.min.x -= delta;
+    this.max.x += delta;
+  },
+
+  makeTaller: (newHeight) => {
+    var delta = (newHeight - this.getHeight()) / 2;
+    this.min.y -= delta;
+    this.max.y += delta;
+  },
+
+  convertWidth: (desiredAR) => {
+    return this.getHeight() * desiredAR;
+  },
+
+  convertHeight: (desiredAR) => {
+    return this.getWidth() / desiredAR;
+  }
+};
+
+console.log(Box);
+Box.convertAR(1);
+console.log(Box);
+

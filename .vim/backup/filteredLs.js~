@@ -1,0 +1,16 @@
+var fs = require('fs');
+
+var dirName = process.argv[2];
+var filter = process.argv[3];
+
+fs.readdir(dirName, function(err, list) {
+  for (var file of list) {
+    var splitFilename = file.split('.');
+    var fileExt = splitFilename[splitFilename.length - 1];
+
+    if (fileExt === filter && splitFilename.length > 1) {
+      console.log(file);
+    }
+  }
+});
+

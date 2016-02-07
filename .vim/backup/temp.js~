@@ -1,0 +1,8 @@
+function cToF(c) {
+  return c * 1.8 + 32;
+}
+
+function fToC(f) {
+  return (f - 32) / 1.8;
+}
+

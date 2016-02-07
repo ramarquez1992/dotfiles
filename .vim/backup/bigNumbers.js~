@@ -1,0 +1,51 @@
+// Read a power of 10 and display how big the number is
+// 6 - million
+// 9 - billion
+// 12 - trillion
+// 15 - quadrillion
+// 18 - quintillion
+// 21 - sextillion
+// 30 - nonillion
+// 100 - googol
+
+var power = {};
+power.num = verifyInput();
+power.str = powerToString(power.num);
+printPower(power);
+
+function verifyInput() {
+  if (process.argv.length != 3 || isNaN(process.argv[2])) {
+    console.log('USAGE: node bigNumbers.js <NUM>');
+    process.exit(1);
+  }
+
+  return parseInt(process.argv[2]);
+}
+
+function powerToString(exp) {
+  var str = '';
+
+  switch (exp) {
+    case 6:
+      str = 'million';
+      break;
+
+    default:
+      str = null;
+  }
+
+  return str;
+}
+
+function printPower(power) {
+  var output = '';
+
+  if (power.str) {
+    output = '10^' + power.num + ' is one ' + power.str;
+  } else {
+    output = 'Unsure of the name of that number...';
+  }
+
+  console.log(output);
+}
+

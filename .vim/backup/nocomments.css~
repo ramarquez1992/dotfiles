@@ -1,0 +1,18 @@
+/* BLACKLIST */
+#boardsTeaser,                  /* imdb */
+#watch-discussion,              /* youtube */
+#watch7-sidebar,                /* related videos */
+.dp-main,                       /* amazon instant video */
+#js_discussion-region,          /* gawker */
+#conversations-huffpost-web,    /* huffpost */
+#fb_comments_control,           /* buzzfeed */
+.pb-comment-wrapper,            /* washington post */
+.dev-page-below-tabs,           /* deviant art */
+.article-comments,              /* mashable */
+#commenting,                    /* fox news */
+.comments,                      /* chess.com */
+#comments,                      /* catch-all */
+#discourse, discourse-comments
+{
+	display: none !important;
+}

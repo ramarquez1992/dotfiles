@@ -1,0 +1,74 @@
+exports = (typeof window === 'undefined') ? global : window;
+
+exports.recursionAnswers = {
+  listFiles: function(data, dirName) {
+               var fileList = [];
+
+               if (dirName) {
+                 for (file of data.files) {
+                   if (typeof file !== 'string' && file.dir === dirName) {
+                     return exports.recursionAnswers.listFiles(file);
+                   }
+                 }
+               }
+
+               for (file of data.files) {
+                 if (typeof file === 'string') {
+                   fileList.push(file);
+                 } else {
+                   var subDir = exports.recursionAnswers.listFiles(file);
+                   fileList = fileList.concat(subDir);
+                 }
+               }
+
+               return fileList;
+             },
+
+  permute: function(remainder, prefix, permutations) {
+             var prefix = prefix || [];
+             var permutations = permutations || [];
+
+             if (remainder.length < 1) {
+               permutations.push(prefix);
+               return permutations;
+             }
+
+             for (var i = 0; i < remainder.length; ++i) {
+               var newPrefix = prefix.concat([ remainder[i] ]);
+
+               var left = remainder.slice(0, i);
+               var right = remainder.slice(i+1);
+               var newRemainder = left.concat(right);
+
+               var newPermutation = exports.recursionAnswers.permute(newRemainder, newPrefix, permutations);
+             }
+
+             return permutations;
+           },
+
+  fibonacci: function(n) {
+               if (n <= 2) return 1;
+
+               return exports.recursionAnswers.fibonacci(n-1) + exports.recursionAnswers.fibonacci(n-2);
+
+             },
+
+  validParentheses: function(openStock, closeStock, str, permutations) {
+                      var closeStock = closeStock || 0;
+                      var str = str || '';
+                      var permutations = permutations || [];
+
+                      if (openStock === 0 && closeStock === 0) {
+                        console.log(str);
+                        permutations.push(str);
+                      }
+
+                      if (openStock > 0) {
+                        exports.recursionAnswers.validParentheses(openStock-1, closeStock+1, str+'(', permutations);
+                      }
+
+                      if (closeStock > 0) {
+                        exports.recursionAnswers.validParentheses(openStock, closeStock-1, str+')', permutations);
+                      }
+                    }
+};

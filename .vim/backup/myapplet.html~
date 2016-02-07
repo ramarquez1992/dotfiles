@@ -1,0 +1,7 @@
+<html>
+  <p> This file launches the applet: myfirstappletclass! </p> 
+  <applet code="myfirstapplet.class" height=200 width=320>
+    No Java?!
+  </applet>
+</html>
+

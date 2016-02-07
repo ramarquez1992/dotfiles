@@ -1,0 +1,44 @@
+// calculate area of cirle (piR^2)
+var prompt = require('prompt');
+const PI = 3.14;
+
+getArea(function(area) {
+    console.log('AREA: ' + area);
+});
+
+function getArea(callback) {
+  getRadius(function(radius) {
+    var area = PI * Math.pow(radius, 2);
+
+    callback(area);
+  });
+}
+
+function getRadius(callback) {
+  var radius;
+
+  if (process.argv.length == 3 && !isNaN(process.argv[2])) {
+    radius = process.argv[2];
+    callback(radius);
+
+  } else {
+    prompt.get(['radius'], function(err, result) {
+      if (err) return onErr(err);
+      radius = result.radius;
+
+      if (isNaN(radius)) {
+        console.log('Please enter a valid #.');
+        getRadius(callback);
+      } else {
+        callback(radius);
+      }
+    });
+  }
+}
+
+
+function onErr(err) {
+  console.log('ERROR: ' + err);
+  return 1;
+}
+

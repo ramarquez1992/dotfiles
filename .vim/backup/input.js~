@@ -1,0 +1,17 @@
+'use strict';
+
+// TODO: use ES6 rest syntax
+//module.exports.verify = (minArgs, ...types) => {
+
+module.exports.verify = (minArgs) => {
+  if (process.argv.length - 2 < minArgs) {
+    const filename = process.argv[1].replace(/^.*[\\\/]/, '')
+    const output = 'USAGE: node ' + filename + ' <INPUT ...>';
+
+    console.error(output);
+    process.exit(1);
+  }
+
+  return process.argv.slice(2);
+};
+

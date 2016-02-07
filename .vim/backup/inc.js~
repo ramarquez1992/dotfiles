@@ -1,0 +1,8 @@
+const t = 'test';
+exports.t = t;
+
+exports.onErr = function(err) {
+  console.log('ERROR: ' + err);
+  exit 1;
+}
+

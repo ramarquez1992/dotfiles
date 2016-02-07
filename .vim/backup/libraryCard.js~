@@ -1,0 +1,13 @@
+const Card = {
+  name: '',
+  number: 0,
+  getBalance: function(n) {
+    return n+1;
+  }
+}
+
+var myCard = Card;
+myCard.name = 'Richie';
+
+console.log(myCard.name + myCard.number + myCard.getBalance(2));
+

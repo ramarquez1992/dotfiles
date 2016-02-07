@@ -1,0 +1,4 @@
+var ds4 = require('ds4');
+var through = require('through');
+
+hid.pipe(through(ds4.parseDS4HIDData)).pipe(process.stdout);

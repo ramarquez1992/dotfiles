@@ -1,0 +1,26 @@
+/*
+ * Comments –
+ *  
+ *  Hello - this is my first Applet
+ *  */
+
+import javax.swing.JApplet;
+import java.awt.*;
+import java.io.*;
+
+public class myfirstapplet extends JApplet
+{
+  public void paint(Graphics page)
+  {
+    //System.out.println(" Hello - this is really very confusing");
+
+    page.drawRect(50,50,40,40);
+    page.drawRect(60,80,225,30);
+    page.drawOval(75,65,20,20);
+    page.drawLine(35,60,100,120);
+    page.drawRect(150,150,140,140);
+    page.drawString(" Out of clutter find simplicity", 110, 70);
+    page.drawString(" --- Albert Einstein", 130, 100);
+  }
+}
+

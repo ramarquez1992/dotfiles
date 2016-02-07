@@ -1,0 +1,21 @@
+const input = require('./input');
+
+const countBits = require('./countBits');
+var n = input.verify(1)[0];
+console.log(countBits(n) + ' bits needed to represent ' + n);
+
+/*
+// random.js
+const random = require('./random.js');
+
+// TODO: use ES6 array destructuring
+//const [min, max] = input.verify(2);
+
+const r = input.verify(2);
+const min = r[0];
+const max = r[1];
+
+const n = random(min, max);
+console.log(n);
+*/
+

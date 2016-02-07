@@ -1,0 +1,54 @@
+var app = require('http').createServer(handler)
+  , io = require('socket.io').listen(app)
+  , fs = require('fs')
+  , five = require("johnny-five"),
+  board,led,sensor;
+
+board = new five.Board({
+  port: "/dev/tty.ARDUINO-DevB"
+});
+
+
+board.on("ready", function() {
+  led = new five.Led(13).strobe(1000);
+
+  // poll this sensor every second
+  sensor = new five.Sensor({
+    pin: "A0",
+    freq: 1000
+  });
+});
+
+// handle web server
+app.listen(8080);
+function handler (req, res) {
+  fs.readFile(__dirname + '/index.html',
+  function (err, data) {
+    if (err) {
+      res.writeHead(500);
+      return res.end('Error loading index.html');
+    }
+
+    res.writeHead(200);
+    res.end(data);
+  });
+}
+
+// on a socket connection
+io.sockets.on('connection', function (socket) {
+  socket.emit('news', { hello: 'world' });
+ 
+  if(board.isReady){
+    // read in sensor data, pass to browser
+    sensor.on("data",function(){
+      socket.emit('sensor', { raw: this.raw });
+    });
+  }
+
+  // if led message received
+  socket.on('led', function (data) {
+    console.log(data);
+     if(board.isReady){    led.strobe(data.delay); } 
+  });
+
+});

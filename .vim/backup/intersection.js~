@@ -1,0 +1,16 @@
+// given 2 sorted arrays count the number of elements they have in common
+
+const arr1 = [ 1, 3, 3, 5, 9, 73 ];
+const arr2 = [ 1, 4, 6, 9, 70 ];
+
+var intersection = [];
+
+for (n of arr1) {
+  for (m of arr2) {
+    if (n == m) intersection.push(n);
+    if (m > n) break;
+  }
+}
+
+console.log(intersection.length + ' elements in common');
+

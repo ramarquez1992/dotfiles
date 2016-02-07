@@ -1,0 +1,58 @@
+// accept unit weight of a bag of coffee in lbs and the # of bags sold and
+// display the total price of the sale
+// totalPrice = bagWeight * #ofBags * pricePerLb
+// totalPriceWithTax = totalPrice + totalPrice * taxRate
+// Number of bags sold: 32
+// Weight per bag: 5 lb
+// Price per pound: $5.99
+// Sales tax: 7.25%
+//
+// Total price: $1027.88
+
+var Q = require('q');
+var prompt = require('prompt');
+prompt.start();
+
+const LB_PRICE = 5.99;
+const TAX_RATE = 7.25;
+const TAX_PERCENT = TAX_RATE / 100;
+
+function getInput() {
+  var deferred = Q.defer();
+
+  prompt.get(['Number of bags sold', 'Weight per bag'], function(err, results) {
+    if (err) deferred.reject(err);
+
+    if (isNaN(results['Number of bags sold']) || isNaN(results['Weight per bag'])) {
+      console.log('Please enter valid numbers');
+      getInput();
+    }
+
+    var input = {};
+    input.numBags = parseFloat(results['Number of bags sold']);
+    input.bagWeight = parseFloat(results['Weight per bag']);
+
+    deferred.resolve(input);
+  });
+
+  return deferred.promise;
+}
+
+function calculateTotals(data) {
+  var totals = {};
+  totals.price = data.bagWeight * data.numBags * LB_PRICE;
+  totals.taxedPrice = totals.price + totals.price * TAX_PERCENT;
+  
+  return totals;
+}
+
+getInput().then(function(input) {
+  var totals = calculateTotals(input);
+
+  console.log('Price per pound: $' + LB_PRICE.toFixed(2));
+  console.log('Sales tax: ' + TAX_RATE + '%');
+  console.log('\nTotal price: $' + totals.taxedPrice.toFixed(2));
+
+});
+
+

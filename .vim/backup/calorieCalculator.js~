@@ -1,0 +1,27 @@
+// accept a person's weight and display number of calories needed in one day
+// calories = bodyWeight * 19
+
+var inc = require('./inc.js');
+var prompt = require('prompt');
+
+getCalories(function(calories) {
+  console.log('calories/day: ' + Math.floor(calories));
+});
+
+function getCalories(callback) {
+  getWeight(function(weight) {
+    const calories = weight * 15;
+    callback(calories);
+  });
+
+}
+
+function getWeight(callback) {
+  prompt.get(['weight'], function(err, result) {
+    if (err) return onErr(err);
+
+   callback(result.weight); 
+  });
+
+}
+

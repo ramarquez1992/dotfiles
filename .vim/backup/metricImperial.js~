@@ -1,0 +1,18 @@
+const CM_IN_INCHES = 2.54;
+const INCHES_IN_FT = 12;
+
+// Take cm, give feet and inches object
+function metricToImperial(cm) {
+  var rawInches = cmToInches(cm);
+  var imperial = {};
+
+  imperial.feet = parseInt(Math.floor(rawInches) / INCHES_IN_FT);
+  imperial.inches = rawInches - (imperial.feet * INCHES_IN_FT);
+
+  return imperial;
+}
+
+function cmToInches(cm) {
+  return cm / CM_IN_INCHES;
+}
+

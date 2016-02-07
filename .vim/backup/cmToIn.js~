@@ -1,0 +1,53 @@
+// convert cm (input) to ft and inches (output) 1in = 2.54cm
+var prompt = require('prompt');
+const CM_IN_INCHES = 2.54;
+const INCHES_IN_FT = 12;
+
+getCm(function(cm) {
+  var imperial = metricToImperial(cm);
+  
+  console.log(imperial.feet + 'ft ' + imperial.inches.toFixed(2) + 'in');
+});
+
+// Take cm, give feet and inches object
+function metricToImperial(cm) {
+  var rawInches = cmToInches(cm);
+  var imperial = {};
+
+  imperial.feet = parseInt(Math.floor(rawInches) / INCHES_IN_FT);
+  imperial.inches = rawInches - (imperial.feet * INCHES_IN_FT);
+
+  return imperial;
+}
+
+function cmToInches(cm) {
+  return cm / CM_IN_INCHES;
+}
+
+function getCm(callback) {
+  var cm;
+
+  if (process.argv.length == 3 && !isNaN(process.argv[2])) {
+    cm = parseInt(process.argv[2]);
+    callback(cm);
+
+  } else {
+    prompt.get(['cm'], function(err, result) {
+      if (err) return onErr(err);
+      cm = parseInt(result.cm);
+
+      if (isNaN(cm)) {
+        console.log('Please enter a valid #.');
+        getCm(callback);
+      } else {
+        callback(cm);
+      }
+    });
+  }
+}
+
+function onErr(err) {
+  console.log('ERROR: ' + err);
+  return 1;
+}
+

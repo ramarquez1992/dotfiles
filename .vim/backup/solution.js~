@@ -1,0 +1,30 @@
+var fs = require('fs');
+
+var filename = '';
+if (process.argv.length != 3) {
+  console.log('USAGE: node solution.js <FILE>');
+  process.exit(1);
+} else {
+  filename = process.argv[2];
+}
+
+fs.readFile(filename, 'utf8', (err, data) => {
+  if (err) return console.log(err);
+
+  var u = transcribeRNA(data);
+  //writeFile(u);
+  console.log(u);
+});
+
+function transcribeRNA(t) {
+  var u = t.replace(/T/gi, 'U');
+
+  return u;
+}
+
+function writeFile(data) {
+  fs.writeFile('output', data, (err) => {
+    if (err) return console.log(err);
+  });
+}
+

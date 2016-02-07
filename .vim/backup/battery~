@@ -1,0 +1,12 @@
+#!/bin/bash
+# Description:  Display distilled battery status
+# Author:       "Richard Marquez" <richard92m@me.com>
+# Date:         20140728
+
+info=$(acpi -V | grep %)
+
+#front=${info%\%*\%}
+front=${info%,*,}
+
+echo info : $info
+echo front: $front

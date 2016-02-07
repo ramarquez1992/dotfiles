@@ -1,0 +1,34 @@
+exports = (typeof window === 'undefined') ? global : window;
+
+exports.asyncAnswers = {
+  async : function(value) {
+            return new Promise(function(resolve, reject) {
+              resolve(value);
+            });
+
+  },
+
+  manipulateRemoteData : function(url) {
+           return new Promise(function(resolve, reject) {
+             var req = new XMLHttpRequest();
+             req.open('GET', url, true);
+             req.send();
+
+             req.onreadystatechange = function() {
+               if (req.readyState === 4 && req.status === 200) {
+                 var people = JSON.parse(req.responseText)['people'];
+                 var results = [];
+
+                 people.forEach(function(p) {
+                   console.log(p);
+                 });
+
+
+                 resolve(results);
+               }
+             };
+
+           });
+
+  }
+};

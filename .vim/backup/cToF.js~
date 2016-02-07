@@ -1,0 +1,26 @@
+// convert deg C to F (F = 1.8 * C + 32)
+
+var inc = require('./inc.js');
+var prompt = require('prompt');
+
+getF(function(f) {
+  console.log('f: ' + f.toFixed(2));
+});
+
+function getF(callback) {
+  getC(function(c) {
+    const f = 1.8 * c + 32;
+    callback(f);
+  });
+
+}
+
+function getC(callback) {
+  prompt.get(['c'], function(err, result) {
+    if (err) return onErr(err);
+
+   callback(result.c); 
+  });
+
+}
+

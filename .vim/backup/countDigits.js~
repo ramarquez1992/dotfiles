@@ -1,0 +1,26 @@
+// count the digits of an integer
+
+function verifyInput() {
+  if (process.argv.length != 3 || isNaN(process.argv[2])) {
+    console.log('USAGE: node countDigits.js <NUM>');
+    process.exit(1);
+  }
+
+  return parseFloat(process.argv[2]);
+}
+
+function countDigits(n) {
+  var digitCnt = 0;
+  if (n > 1) ++digitCnt;
+
+  while (n / 10 >= 1) {
+    n /= 10;
+    ++digitCnt;
+  }
+
+  return digitCnt;
+}
+
+var n = verifyInput();
+console.log(n + ' has ' + countDigits(n) + ' digits');
+

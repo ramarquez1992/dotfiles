@@ -9,7 +9,6 @@
 ::1             localhost 
 
 # Stop.
-127.0.0.1 megavideo.sc 
 127.0.0.1 stream-tv1.net
 127.0.0.1 vidbull.com
 127.0.0.1 gorillavid.in
@@ -20,7 +19,7 @@
 127.0.0.1 videoweed.es www.videoweed.es
 127.0.0.1 vidxden.com www.vidxden.com
 127.0.0.1 novamov.com www.novamov.com
-127.0.0.1 megashare.sc 
+127.0.0.1 megashare.sc megavideo.sc 
 127.0.0.1 geektv.me
 127.0.0.1 watchseries1.eu
 127.0.0.1 watchseries-online.ch
@@ -45,12 +44,15 @@
 127.0.0.1 xmovies8.tv www.xmovies8.tv
 127.0.0.1 solarmovie.cz www.solarmovie.cz
 127.0.0.1 putlocker.ms putlocker.tn putlockerx.com www.putlockerx.com putlocker.is
-127.0.0.1 facebook.com www.facebook.com
-127.0.0.1 ign.com www.ign.com
+127.0.0.1 watchseries.li www.watchseries.li
+127.0.0.1 watchepisodes.com www.watchepisodes.com
+127.0.0.1 watchfree.to www.watchfree.to
+#127.0.0.1 facebook.com www.facebook.com
+#127.0.0.1 ign.com www.ign.com
 127.0.0.1 news.ycombinator.com
 127.0.0.1 arstechnica.com www.arstechnica.com
-127.0.0.1 cnet.com www.cnet.com
+#127.0.0.1 cnet.com www.cnet.com
 127.0.0.1 infoworld.com www.infoworld.com
 127.0.0.1 theverge.com www.theverge.com
-
+#127.0.0.1 youtube.com www.youtube.com
 

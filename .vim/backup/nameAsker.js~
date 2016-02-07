@@ -1,0 +1,31 @@
+var prompt = require('prompt');
+
+askForName();
+
+function askForName() {
+  console.log('Enter your name in the following format: <FIRST> <MIDDLE> <LAST>');
+
+  //prompt.start();
+  prompt.get(['name'], function(err, result) {
+    if (err) { return onErr(err); }
+
+    printName(result.name);
+  });
+}
+
+function printName(rawName) {
+  var names = rawName.split(' ');
+
+  var first = names[0];
+  var middle = names[1];
+  var last = names[2];
+
+  var formattedName = last + ', ' + first + ' ' + middle;
+  console.log(formattedName);
+}
+
+function onErr(err) {
+  console.log(err);
+  return 1;
+}
+

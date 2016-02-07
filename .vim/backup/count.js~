@@ -1,0 +1,29 @@
+exports = (typeof window === 'undefined') ? global : window;
+
+exports.countAnswers =  {
+  count : function (start, end) {
+            j = start;
+
+            /*setTimeout(function() {
+              alert(j);
+            }, 50);*/
+
+            console.log(j++);
+            // global var so window.clearInterval() can be used
+            var timer = window.setInterval(function() {
+              if (j <= end) { 
+                console.log(j++);
+              } else {
+                window.clearInterval(timer);
+              }
+            }, 100);
+
+            var result = {
+              cancel: function() {
+                        window.clearInterval(timer);
+                      }
+            };
+
+            return result;
+  }
+};

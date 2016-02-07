@@ -1,0 +1,94 @@
+<div id="imgContainer" style="z-index: 1000; display: none; position: absolute; top: 150px; left: 150px; width: 80%; margin: auto; background-color: #ffffff;">
+<div id="closeButton" style="cursor: pointer; position: absolute; top: -20px; left: -20px; padding: 5px; font-size: 3em; background-color: #444444; color: #ffffff;" onclick="
+document.getElementById('imgContainer').style.display = 'none';
+document.getElementById('shade').style.display = 'none';
+">X</div>
+<img style="cursor: pointer;" alt="" id="fullImage" src="/Portals/21/resources/2.jpg" onclick="
+var pages = document.getElementsByClassName('page')
+// get current page index
+var currentPageIndex = 0;
+for (var i = 0; i &lt; pages.length; i++) {
+if (pages[i].className.indexOf('currentPage') &gt; - 1) {
+currentPageIndex = i;
+}
+}
+// update current page
+if (currentPageIndex &lt; pages.length - 1) {
+pages[currentPageIndex].style.display = 'none';
+pages[currentPageIndex].className= 'page';
+pages[++currentPageIndex].style.display = 'block';
+pages[currentPageIndex].className= 'page currentPage';
+document.getElementById('fullImage').src = pages[currentPageIndex].firstChild.src;
+}
+" />
+</div>
+<div id="shade" style="z-index: 900; display: none; background-color: #000000; opacity: 0.5; position: absolute; left: 0px; top: 0px; width: 5000px; height: 5000px; overflow: hidden;" onclick="
+document.getElementById('imgContainer').style.display = 'none';
+document.getElementById('shade').style.display = 'none';
+"></div>
+<ul id="flipbook" style="cursor: pointer; position: relative; margin: 0px; padding: 0px; list-style-type: none; float: left;">
+    <div style="opacity: 0.8; padding: 3px 0px; position: absolute; top: 10px; left: 5px; width: 30px; background-color: #555555; color: #ffffff; text-align: center;" onclick="
+    var pages = document.getElementsByClassName('page')
+    // get current page index
+    var currentPageIndex = 0;
+    for (var i = 0; i &lt; pages.length; i++) {
+    if (pages[i].className.indexOf('currentPage') &gt; -1) {
+    currentPageIndex = i;
+    }
+    }
+    // update current page
+    if (currentPageIndex &gt; 0) {
+    pages[currentPageIndex].style.display = 'none';
+    pages[currentPageIndex].className= 'page';
+    pages[--currentPageIndex].style.display = 'block';
+    pages[currentPageIndex].className= 'page currentPage';
+    }
+    ">&lt;&lt;</div>
+    <div onclick="
+    var pages = document.getElementsByClassName('page')
+    // get current page index
+    var currentPageIndex = 0;
+    for (var i = 0; i &lt; pages.length; i++) {
+    if (pages[i].className.indexOf('currentPage') &gt; -1) {
+    currentPageIndex = i;
+    }
+    }
+    document.getElementById('imgContainer').style.display = 'block';
+    document.getElementById('shade').style.display = 'block';
+    document.getElementById('fullImage').src = pages[currentPageIndex].firstChild.src;
+    ">
+    <li class="page currentPage"><img alt="" width="500" src="/Portals/21/images/1.jpg" /></li>
+    <li class="page" style="display: none;"><img alt="" width="500" src="/Portals/21/images/2.jpg" /></li>
+    <li class="page" style="display: none;"><img alt="" width="500" src="/Portals/21/images/3.jpg" /></li>
+    <li class="page" style="display: none;"><img alt="" width="500" src="/Portals/21/images/4.jpg" /></li>
+    <li class="page" style="display: none;"><img alt="" width="500" src="/Portals/21/images/5.jpg" /></li>
+    <li class="page" style="display: none;"><img alt="" width="500" src="/Portals/21/images/6.jpg" /></li>
+    <li class="page" style="display: none;"><img alt="" width="500" src="/Portals/21/images/7.jpg" /></li>
+    <li class="page" style="display: none;"><img alt="" width="500" src="/Portals/21/images/8.jpg" /></li>
+    <li class="page" style="display: none;"><img alt="" width="500" src="/Portals/21/images/9.jpg" /></li>
+    <li class="page" style="display: none;"><img alt="" width="500" src="/Portals/21/images/10.jpg" /></li>
+    <li class="page" style="display: none;"><img alt="" width="500" src="/Portals/21/images/11.jpg" /></li>
+    <li class="page" style="display: none;"><img alt="" width="500" src="/Portals/21/images/12.jpg" /></li>
+    <li class="page" style="display: none;"><img alt="" width="500" src="/Portals/21/images/13.jpg" /></li>
+    <li class="page" style="display: none;"><img alt="" width="500" src="/Portals/21/images/14.jpg" /></li>
+    <li class="page" style="display: none;"><img alt="" width="500" src="/Portals/21/images/15.jpg" /></li>
+    <li class="page" style="display: none;"><img alt="" width="500" src="/Portals/21/images/16.jpg" /></li>
+    </div>
+    <div style="opacity: 0.8; padding: 3px 0px; position: absolute; top: 10px; left: 465px; width: 30px; background-color: #555555; color: #ffffff; float: left; text-align: center;" onclick="
+    var pages = document.getElementsByClassName('page')
+    // get current page index
+    var currentPageIndex = 0;
+    for (var i = 0; i &lt; pages.length; i++) {
+    if (pages[i].className.indexOf('currentPage') &gt; -1) {
+    currentPageIndex = i;
+    }
+    }
+    // update current page
+    if (currentPageIndex &lt; pages.length - 1) {
+    pages[currentPageIndex].style.display = 'none';
+    pages[currentPageIndex].className= 'page';
+    pages[++currentPageIndex].style.display = 'block';
+    pages[currentPageIndex].className= 'page currentPage';
+    }
+    ">&gt;&gt;</div>
+</ul>

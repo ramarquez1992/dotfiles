@@ -1,0 +1,14 @@
+var between = function(min, max) {
+  let result = 0;
+
+  if (typeof min  === 'number' && typeof max === 'number') {
+    result = Math.floor(Math.random() * (max - min + 1)) + min;
+  } else {
+    result = Math.random();
+  }
+
+  return result;
+};
+
+module.exports.between = between;
+

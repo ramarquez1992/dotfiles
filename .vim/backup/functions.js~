@@ -1,0 +1,95 @@
+exports = (typeof window === 'undefined') ? global : window;
+
+exports.functionsAnswers = {
+  argsAsArray : function(fn, arr) {
+                  var [ greeting, name, punctuation ] = arr;
+
+                  return fn(greeting, name, punctuation);
+
+  },
+
+  speak : function(fn, obj) {
+            this.greeting = obj.greeting;
+            this.name = obj.name;
+
+            return fn.call(this);
+  },
+
+  functionFunction : function(str) {
+                       return function(str2) {
+                         return str + ', ' + str2;
+                       };
+
+  },
+
+  makeClosures : function(arr, fn) {
+                   var results = [];
+
+                   arr.forEach(function(i) {
+                     results.push(function() {
+                       return fn(i);
+                     });
+                   });
+
+                   return results;
+
+  },
+
+  partial : function(fn, str1, str2) {
+              return function(str3) {
+                return fn(str1, str2, str3);
+              };
+
+  },
+
+  useArguments : function() {
+                   var sum = 0;
+
+                   for (var i = 0; i < arguments.length; ++i) {
+                     sum += arguments[i];
+                   };
+
+                   return sum;
+
+  },
+
+  callIt : function(fn) {
+             var args = Array.prototype.slice.call(arguments);
+             var nextArgs = args.slice(1);
+             fn.apply(this, nextArgs);
+
+  },
+
+  partialUsingArguments : function(fn) {
+             var args = Array.prototype.slice.call(arguments);
+             var args = args.slice(1);
+
+             return function() {
+               var nextArgs = Array.prototype.slice.call(arguments);
+               var finalArgs = args.concat(nextArgs);
+               return fn.apply(this, finalArgs);
+             };
+
+  },
+
+  curryIt : function(fn) {
+              argStack = [];
+
+              var courier = function(n) {
+                argStack.push(n);
+                var curried;
+
+                if (argStack.length === fn.length) {
+                  curried = fn.apply(this, argStack);
+                } else {
+                  curried = courier;
+                }
+
+                return curried;
+              };
+
+              return courier;
+
+  }
+};
+

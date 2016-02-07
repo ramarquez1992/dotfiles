@@ -1,0 +1,106 @@
+#!/bin/bash
+# Description:  Sort and [binary] search a given list of numbers
+# Author:       "Richard Marquez" <richard92m@me.com>
+# Date:         20140730
+
+# Usage: bubblesort "<#> <#> <#>" resultVariable
+bubbleSort()
+{
+  local sorted
+  read -a sorted <<< $1
+
+  local stillWorking=true
+  while $stillWorking
+  do
+    stillWorking=false
+
+    local i=0
+    while [ $i -lt $(( ${#sorted[*]} - 1 )) ]
+    do
+      if [ ${sorted[$i]} -gt ${sorted[$(($i+1))]} ]
+      then
+        local tmp=${sorted[$i]}
+        sorted[$i]=${sorted[$(($i+1))]}
+        sorted[$(($i+1))]=$tmp
+
+        stillWorking=true
+      fi
+
+      i=$(( $i + 1 ))
+    done
+  done
+
+  eval "`echo $2`=( ${sorted[*]} )"   # set result variable
+}
+
+binarySearch()
+{
+  local searchResult
+  local i=3
+
+  if [ $i -ge 0 ]
+  then
+    searchResult=$i
+    echo $i
+  else  # could not find
+    searchResult=false
+  fi
+
+  eval "`echo $2`=$searchResult"
+}
+
+# Get list
+if [ $# -eq 0 ]
+then
+  printf "Please enter a list of numbers: "
+  read userInput
+  list+=( ${userInput[*]} )
+else
+  list+=( $* )
+fi
+
+
+# Validate list
+validInput=^[0-9]*$
+
+for i in ${list[*]}
+do
+  if [[ $i =~ $validInput ]]
+  then
+    continue # valid
+  else
+    printf "INVALID ARGUMENT: %s\n" $i
+    exit 1
+  fi
+done
+
+
+# Sort list
+printf "Old list: %s\n" "${list[*]}"
+
+bubbleSort "${list[*]}" "sortedList"
+
+printf "New list: %s\n" "${sortedList[*]}"
+
+
+# Take number
+num=invalid
+while [[ ! $num =~ $validInput ]]
+do
+  printf "Pick a number: "
+  read num
+done
+
+
+# Find number
+binarySearch "${sortedList[*]}" "searchResult"
+
+
+# Display number
+if [ searchResult ]
+then
+  printf "%d was found at index %d\n" $num $searchResult
+else
+  printf "%d was not present\n" $num
+fi
+

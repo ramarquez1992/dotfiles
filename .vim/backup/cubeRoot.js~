@@ -1,0 +1,15 @@
+// cube root of product of x and y
+
+const x = 3;
+const y = 5;
+
+console.log('cubeRt( ' + x + '*' + y + ' ) = ' + cubeRt(x*y).toFixed(2));
+
+function cubeRt(n) {
+  var result = 0;
+
+  result = Math.cbrt(n);
+
+  return result;
+}
+

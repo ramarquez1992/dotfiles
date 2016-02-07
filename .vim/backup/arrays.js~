@@ -1,0 +1,143 @@
+exports = (typeof window === 'undefined') ? global : window;
+
+exports.arraysAnswers = {
+
+  indexOf : function(arr, item) {
+              var index = -1;
+              for (var i = 0; i < arr.length; ++i) {
+                if (arr[i] === item) {
+                  index = i;
+                  break;
+                }
+              }
+
+              return index;
+
+  },
+
+  sum : function(arr) {
+          var sum = 0;
+
+          arr.forEach(function(n) {
+            sum += n;
+          });
+
+          return sum;
+
+  },
+
+  remove : function(arr, item) {
+             var i = this.indexOf(arr, item);
+             while (i > -1) {
+               arr.splice(i, 1);
+               i = this.indexOf(arr, item);
+             }
+
+             return arr;
+
+  },
+
+  removeWithoutCopy : function(arr, item) {
+             var i = this.indexOf(arr, item);
+             while (i > -1) {
+               arr.splice(i, 1);
+               i = this.indexOf(arr, item);
+             }
+
+             return arr;
+  },
+
+  append : function(arr, item) {
+             arr.splice(arr.length, 0, item);
+             return arr;
+
+  },
+
+  truncate : function(arr) {
+               arr.splice(-1);
+               return arr;
+
+  },
+
+  prepend : function(arr, item) {
+              arr.splice(0, 0, item);
+              return arr;
+
+  },
+
+  curtail : function(arr) {
+              arr.splice(0, 1);
+              return arr;
+
+  },
+
+  concat : function(arr1, arr2) {
+             return arr1.concat(arr2);
+
+  },
+
+  insert : function(arr, item, index) {
+             var pre = arr.slice(0, index);
+             pre.push(item);
+             var post = arr.slice(index);
+             return pre.concat(post);
+
+  },
+
+  count : function(arr, item) {
+            var c = 0;
+            arr.forEach(function(n) {
+              if (n === item) {
+                ++c;
+              }
+            });
+
+            return c;
+
+  },
+
+  duplicates : function(arr) {
+                 var counts = {};
+                 arr.forEach(function(n) {
+                   if (counts[n]) {
+                     ++counts[n];
+                   } else {
+                     counts[n] = 1;
+                   }
+                 });
+
+                 var duplicates = [];
+                 for (var n in counts) {
+                   if (counts[n] > 1) {
+                     duplicates.push(parseInt(n));
+                   }
+                 }
+
+                 return duplicates;
+
+  },
+
+  square : function(arr) {
+             var squares = [];
+
+             arr.forEach(function(n) {
+               squares.push(n*n);
+             });
+
+             return squares;
+
+  },
+
+  findAllOccurrences : function(arr, target) {
+                         var o = [];
+
+                         for (var i = 0; i < arr.length; ++i) {
+                           if (arr[i] === target) {
+                             o.push(i);
+                           }
+                         }
+
+                         return o;
+
+  }
+};

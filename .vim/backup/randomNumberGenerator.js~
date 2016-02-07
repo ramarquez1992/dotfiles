@@ -1,0 +1,18 @@
+if (process.argv.length != 4 || isNaN(process.argv[2]) || isNaN(process.argv[3])) {
+  console.log('USAGE: node randomNumberGenerator.js <MIN> <MAX>');
+} else {
+  var min = process.argv[2];
+  var max = process.argv[3];
+
+  console.log(getRandomNum(min, max));
+}
+
+function getRandomNum(min, max) {
+  min = parseInt(min);
+  max = parseInt(max);
+
+  return Math.floor(Math.random() * (max-min+1)) + min;
+}
+
+module.exports = getRandomNum;
+

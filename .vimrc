@@ -10,10 +10,13 @@ set directory=~/.vim/tmp
 
 set autochdir " automatically cd to dir current file is in
 
-" highlight current line
 set cul
 hi CursorLine term=none cterm=none ctermbg=235
 set colorcolumn=80
+
+" highlight current line
+set background=dark
+colorscheme distinguished
 
 set shiftwidth=2
 set tabstop=2
@@ -29,15 +32,15 @@ filetype indent on
 filetype plugin on
 
 map <C-f> :NERDTreeToggle<CR>
+let NERDTreeQuitOnOpen = 1
 
-" moving between panes
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+noremap <silent> <C-l> :TlistToggle<CR>
+let Tlist_GainFocus_On_ToggleOpen = 1
+let Tlist_Close_On_Select = 1
 
 map <C-n> :tabnext<CR>
 map <C-p> :tabprevious<CR>
 
 map U :redo<CR>
+
 

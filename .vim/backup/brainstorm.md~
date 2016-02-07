@@ -1,0 +1,67 @@
+# three.{supply,flights,bar,works}
+
+--
+
+### style/objective of the old, polish + computing power of the new
+
+## length
+* SHORT and CAN BE WON
+* replayed for better score, time, ending
+
+## levels
+* few separate levels(e.g. donkey kong, ms. pac-man, nimble quest)
+* separate rooms (e.g. pitfall!, adventure)
+  * every room is a checkpoint (can still break the game (unwinnable) though)
+* 2 tiers of physical (top acrobatic / bottom combat-ish)
+* edge-portals (e.g. adventure/pitfall!, pac-man/!!TRON!!)
+* reinclusive edges (e.g. asteroids)
+
+## gameplay
+* 2 tiers of playfield (galaxian carriers and dropships)
+* different speed = new strategy (e.g. missile command, tron, space invaders)
+* different ratio of mobs = more intense (e.g. galaxian)
+* slow (e.g. tron)
+
+## item
+* tron - disc takes time to come back to you
+* sparse, immediately visible, OPTIONAL item (e.g. mario hammer, pac-man eats)
+
+## mobs
+* central enemy hive (e.g. pac-man)
+* descending (e.g. galaxian, space invaders, atlantis, missile command)
+
+## health
+* can win back lives (e.g. tron)
+* instant, intuitive gauge (e.g. tron, missile command)
+* 2 tiers of health (e.g. missle command)
+* no penalty for hitting other actors (e.g. tron, galaxian)
+* dying makes you stronger, lamer (e.g. Jap fighting game)
+
+## controls
+* solar fox - speed boost is only control
+* asteroids - too mathy?
+* atlantis - no movement, all timing
+* donkey kong - left/right + action is nice amount of controls
+* drag-the-snake-like 
+* down - random teleport
+
+## art
+* 2600-era graphics is the only viable way to stand out
+* rad and dynamic bg (i.e. atlantas)
+* foley sound effects or uber-synth? (e.g. donkey kong, pac-man)
+* old game cover art
+* fuck copy; wordplay
+
+## UI
+* arcade game landing screen (art + title + press start)
+* zero menu (PAUSE)
+* choose levels by swiping horizontal, difficulty swiping vertically
+* endgame
+  * galaxian - triple-branding + psychedelic flashes
+  * tron - see the game continue playing
+  * donkey kong - pause endgame
+  * hexagon - scores and insta-repeat
+
+## miscellaneous
+* immediate goal sign (peach+dk refrain at finish line)
+

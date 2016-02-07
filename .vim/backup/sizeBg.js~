@@ -1,0 +1,14 @@
+function sizeBg() {
+  var bgImage = document.getElementById("bg");
+
+  if (window.innerWidth > bgImage.clientWidth) {
+    bgImage.style.width = "100%";
+    bgImage.style.height = "auto";
+  }
+
+  if (window.innerHeight > bgImage.clientHeight) {
+    bgImage.style.width = "auto";
+    bgImage.style.height = "100%";
+  }
+}
+

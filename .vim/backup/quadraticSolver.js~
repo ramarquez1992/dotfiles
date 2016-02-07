@@ -1,0 +1,46 @@
+// input: Ax^2 + Bx + C = 0
+// coefficients A, B C are real numbers
+// 2 real number solutions derived by:
+// x = (-B +- sqrt(B^2 - 4AC)) / 2A
+// assum that a != 0 and b^2 >= 4ac
+
+var prompt = require('prompt');
+
+console.log('input: Ax^2 + Bx + C = 0');
+
+getEquation(function(eq) {
+  const a = eq.a;
+  const b = eq.b;
+  const c = eq.c;
+
+  const sqrt = Math.sqrt( (b*b) - (4*a*c) );
+  const pos = ((b * -1) + sqrt ) / (2*a);
+  const neg = ((b * -1) - sqrt ) / (2*a);
+
+  console.log('x = ' + pos + ' || ' + neg);
+});
+
+// input: Ax^2 + Bx + C = 0
+function getEquation(callback) {
+  prompt.get(['eq'], function(err, result) {
+    if (err) return onErr(err);
+
+    var a = result.eq.split(' ')[0].split('x')[0];
+    console.log(a);
+
+    var b = result.eq.split(' ')[2].split('x')[0];
+    console.log(b);
+
+    var c = result.eq.split(' ')[4];
+    console.log(c);
+    
+    const eq = {
+      a: a,
+      b: b,
+      c: c
+    }
+
+    callback(eq);
+  });
+}
+

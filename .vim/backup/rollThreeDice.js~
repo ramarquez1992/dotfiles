@@ -1,0 +1,21 @@
+// output 3 random numbers between 1 and 6 (inclusive)
+var getRandomNum = require('./randomNumberGenerator.js');
+
+const NUM_DICE = 3;
+
+if (process.argv.length != 3 || isNaN(process.argv[2])) {
+  console.log('USAGE: node die.js <NUM>');
+  process.exit(1);
+}
+
+
+
+for (var i = 1; i <= NUM_DICE; ++i) {
+  var diceRoll = getRandomNum(1, 6);
+  console.log(i + ') ' + diceRoll);
+}
+
+/*function getRandomNumber(min, max) {
+  return Math.floor(Math.random() * (max-min+1)) + min;
+}*/
+

@@ -1,0 +1,87 @@
+const Fraction = {
+  num: 1,
+  den: 1,
+  equals: function(rhs) {
+    var result = false;
+
+    if (this.num === rhs.num && this.den === rhs.den) {
+      result = true;
+    }
+
+    return result;
+};
+
+var add = (lhs, rhs) => {
+  var larger;
+  var smaller;
+
+  if (lhs.den > rhs.den) {
+    larger = lhs;
+    smaller = rhs;
+  } else {
+    larger = rhs;
+    smaller = lhs;
+  }
+
+  var lcm = getLCM(lhs.den, rhs.den);
+
+  var result = Object.create(Fraction);
+  result.num = (smaller.num * (lcm / smaller.den)) + (larger.num * (lcm / larger.den));
+  result.den = lcm;
+
+  return result;
+};
+
+var subtract = (lhs, rhs) => {
+  var larger;
+  var smaller;
+
+  if (lhs.den > rhs.den) {
+    larger = lhs;
+    smaller = rhs;
+  } else {
+    larger = rhs;
+    smaller = lhs;
+  }
+
+  var lcm = getLCM(lhs.den, rhs.den);
+
+  var result = Object.create(Fraction);
+  result.num = (smaller.num * (lcm / smaller.den)) - (larger.num * (lcm / larger.den));
+  result.den = lcm;
+
+  return result;
+};
+
+var multiply = (lhs, rhs) => {
+  var result = Object.create(Fraction);
+  result.num = lhs.num * rhs.num;
+  result.den = lhs.den * rhs.den;
+
+  return result;
+};
+
+var divide = (lhs, rhs) => {
+  var reciprocal = Object.create(Fraction);
+  reciprocal.num = rhs.den;
+  reciprocal.den = rhs.num;
+
+  return multiply(lhs, reciprocal);
+};
+
+var getGCD = (dividend, divisor) => {
+  return divisor === 0 ? dividend : getGCD(divisor, dividend % divisor);
+}
+
+var getLCM = (a, b) => {
+  return (a * b) / getGCD(a, b);
+}
+
+module.exports.Fraction = Fraction;
+module.exports.add = add;
+module.exports.subtract = subtract;
+module.exports.multiply = multiply;
+module.exports.divide = divide;
+module.exports.getGCD = getGCD;
+module.exports.getLCM = getLCM;
+

@@ -1,0 +1,101 @@
+/**
+ * Generate 3 distinct random digits between 0 and 9
+ * these digits are assigned to positions 1, 2, 3
+ * goal of the games is for player to guess the digits in 3 positions
+ * correctly in the least number of tries
+ * For each guess, the player provides 3 digits for positions 1, 2, 3
+ * Program replies w/ a hint consisting of Fermi, Pico or Nano for each digit.
+ * If digit guessed for a given position is correct, reply is Fermi
+ * If digit guessed for a given position is in a different position, Pico
+ * If does not match any of the 3 digits, Nano
+ */
+
+var random = require('./random.js');
+var readline = require('readline');
+var rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+// Generate n distinct integers between min and max
+function generateSolution(n, min, max) {
+  if (max - min < n) {
+    console.log('Not enough distinct integers between ' + min + ' and ' + max);
+    process.exit(1);
+  }
+
+  var solution = [];
+
+  var i = 0;
+  while (i < n) {
+    var r = random.between(min, max);
+
+    if (solution.indexOf(r) === -1) {
+      solution.push(r);
+      ++i;
+    }
+  }
+
+  return solution;
+}
+
+function promptForGuess(n) {
+  return new Promise( (resolve, reject) => {
+    rl.question('Guess: ', (answer) => {
+      var guess = answer.split(' ').map( (num) => { return parseInt(num, 10); } );
+
+      if (guess.length !== n) {
+        console.log('Please enter ' + n + ' integers separated by spaces\n');
+        promptForGuess(n).then( (result) => { resolve(result); } );
+        return;
+      }
+
+      resolve(guess);
+    });
+  });
+}
+
+function getHints(guess, solution) {
+  var hints = [];
+
+  for (var i in guess) {
+    if (solution.indexOf(guess[i]) === -1) {
+      hints.push('nano');
+    } else if (guess.indexOf(guess[i]) === solution.indexOf(guess[i])) {
+      hints.push('fermi');
+    } else {
+      hints.push('pico');
+    }
+  }
+
+  return hints;
+}
+
+var numDigits = 3;
+var minVal = 0;
+var maxVal = 9;
+var numGuesses = 0;
+
+var solution = generateSolution(numDigits, minVal, maxVal);
+console.log('SOLUTION: ' + solution);
+
+loop();
+
+function loop() {
+  promptForGuess(numDigits).then( (guess) => {
+    ++numGuesses;
+
+    var hints = getHints(guess, solution);
+    console.log('Hints: ' + hints + '\n');
+
+    if (hints.indexOf('nano') === -1 && hints.indexOf('pico') === -1) {
+      console.log('You won in ' + numGuesses + ' guesses!');
+      rl.close();
+      return;
+    }
+
+    loop();
+
+  });
+}
+

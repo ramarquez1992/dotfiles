@@ -1,0 +1,75 @@
+'use strict';
+// There are 3 types of seatings: A, B, C
+// Accept the number of tickets sold and price of a ticket for each 3 types
+// Compute total ticket sales
+
+var prompt = require('prompt');
+prompt.start();
+
+const Ticket = {
+  name: '',
+  price: 0.0,
+  amt: 0,
+  getSales: function() {
+    return this.price * this.amt;
+  }
+}
+
+function getTicket(name) {
+  return new Promise( (resolve, reject) => {
+    console.log('Ticket ' + name);
+    prompt.get(['price', 'amt'], function(err, results) {
+      if (err) deferred.reject(err);
+
+      if (isNaN(results.price) || isNaN(results.amt)) {
+        console.log('Please enter valid numbers');
+        getTicket();
+      }
+
+      var ticket = Object.create(Ticket);
+      ticket.name = name;
+      ticket.price = results.price;
+      ticket.amt = results.amt;
+
+      resolve(ticket);
+    });
+
+  });
+}
+
+function getTickets(types) {
+  var tickets = [];
+
+  // Start off with a promise that always resolves
+  var sequence = Promise.resolve();
+
+  types.forEach(type => {
+    // Add these actions to the end of the sequence
+    sequence = sequence.then(=> {
+      return getTicket(type);
+    }).then(ticket => {
+      tickets.push(ticket);
+      return tickets;
+    });
+  });
+
+  return sequence;
+}
+
+function printTotal(tickets) {
+  var total = 0.0;
+
+  tickets.forEach(ticket => {
+    total += ticket.getSales();
+  });
+
+  console.log('\nTotal: $' + total.toFixed(2));
+}
+
+
+var types = [ 'A', 'B', 'C' ];
+
+getTickets(types).then(tickets => {
+  printTotal(tickets);
+});
+

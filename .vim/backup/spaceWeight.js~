@@ -1,0 +1,21 @@
+// PLANET       MULTIPLY EARTH WEIGHT BY
+// Mercury      0.4
+// Venus        0.9
+// Jupiter      2.5
+// Saturn       1.1
+
+const earthWeight = 130;
+
+const weightFractions = {
+  earth: 1,
+  mercury: 0.4,
+  venus: 0.9,
+  jupiter: 2.5,
+  saturn: 1.1
+}
+
+console.log('Earth: ' + (earthWeight * weightFractions.earth));
+console.log('Mercury: ' + (earthWeight * weightFractions.mercury));
+console.log('Venus: ' + (earthWeight * weightFractions.venus));
+console.log('Jupiter: ' + (earthWeight * weightFractions.jupiter));
+console.log('Saturn: ' + (earthWeight * weightFractions.saturn));

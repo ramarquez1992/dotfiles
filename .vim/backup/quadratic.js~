@@ -1,0 +1,12 @@
+// sq rt of b^2 + 4ac (a and c are distinct variables)
+
+const a = 3;
+const b = 5;
+const c = 4;
+
+var result = Math.sqrt((b*b) + (4*a*c));
+
+console.log('A = ' + a);
+console.log('B = ' + b);
+console.log('C = ' + c);
+console.log('sqrt( B^2 + 4AC ) = ' + result);

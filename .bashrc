@@ -128,10 +128,12 @@ fi
 export PAGER="most"
 alias ls="ls -lGFo"
 alias reboot="sudo reboot"
-alias node="node --harmony"
+alias node="node --harmony --use_strict"
 
 # Prompts
 # Normal
 PS1='\[\e[4;32m\][\u@\h]\[\e[m\] \[\e[1;33m\][\W]\[\e[m\] \[\e[1;32m\]\$\[\e[m\] '
 # Root
 #PS1='\[\e[4;31m\][\u@\h]\[\e[m\] \[\e[1;33m\][\W]\[\e[m\] \[\e[1;31m\]\$\[\e[m\] '
+
+export PATH=$PATH:/usr/local/bin

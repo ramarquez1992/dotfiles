@@ -1,0 +1,170 @@
+// provide optional time limit via argument (else 20s)
+//
+// 10 questions
+// addition, subtraction, multiplication or division
+// 2 fraction operands
+//
+// award points on the following scale
+// correct  -   under limit   -   10
+// correct  -   over limit    -   6
+// wrong    -   under limit   -   3
+// wrong    -   over limit    -   0
+
+var random = require('./random.js');
+var fraction = require('./fraction.js');
+var readline = require('readline');
+var rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+function generateQuestions(n) {
+  var questions = [];
+
+  for (var i = 0; i < n; ++i) {
+    var q = {
+      lhs: generateFraction(1, 10),
+      rhs: generateFraction(1, 10),
+      operator: generateFractionOperator()
+    };
+
+    q.str = q.lhs.num + '/' + q.lhs.den + ' ' + q.operator.sign + ' ' + q.rhs.num + '/' + q.rhs.den;
+    q.answer = q.operator.fn(q.lhs, q.rhs);
+
+    questions.push(q);
+  }
+
+  return questions;
+}
+
+function generateFraction(min, max) {
+  var f = Object.create(fraction.Fraction);
+  f.num = random.between(min, max);
+  f.den = random.between(min, max);
+
+  return f;
+}
+
+function generateFractionOperator() {
+  var add = {
+    sign: '+',
+    fn: fraction.add
+  };
+
+  var subtract = {
+    sign: '-',
+    fn: fraction.subtract
+  };
+
+  var multiply = {
+    sign: '*',
+    fn: fraction.multiply
+  };
+
+  var divide = {
+    sign: '/',
+    fn: fraction.divide
+  };
+
+  var operators = [ add, subtract, multiply, divide ];
+  return operators[ random.between(0, operators.length-1) ];
+}
+
+function ask(question) {
+  return new Promise( (resolve, reject) => {
+    rl.question(question.str + ' = ', (answer) => {
+      var parts = answer.split('/');
+      var answerFrac = Object.create(fraction.Fraction);
+      answerFrac.num = parseInt(parts[0]);
+      answerFrac.den = parseInt(parts[1]);
+      
+      resolve(answerFrac);
+    });
+  });
+}
+
+function askAll(questions) {
+  var answers = [];
+
+  var sequence = Promise.resolve();
+
+  var startTime = Date.now();
+  var totalTime = 0;
+
+  questions.forEach( (q) => {
+    sequence = sequence.then(() => {
+      return ask(q);
+    }).then( (a) => {
+      var msToAnswer = Date.now() - startTime - totalTime;
+
+      var answer = {
+        answer: a,
+        time: Math.floor(msToAnswer / 1000)
+      };
+
+      totalTime += msToAnswer;
+
+      answers.push(answer);
+      return answers;
+    });
+  });
+
+  return sequence;
+}
+
+function grade(questions, answers, timeLimit) {
+  var grade = {
+    correctUnder: 0,
+    correctOver: 0,
+    incorrectUnder: 0,
+    incorrectOver: 0,
+    score: 0
+  };
+
+  for (var i = 0; i < questions.length; ++i) {
+    if (questions[i].answer.equals(answers[i].answer)) {
+      //correct
+      if (answers[i].time <= timeLimit) {
+        ++grade.correctUnder;
+      } else {
+        ++grade.correctOver;
+      }
+    } else {
+      //incorrect
+      if (answers[i].time <= timeLimit) {
+        ++grade.incorrectUnder;
+      } else {
+        ++grade.incorrectOver;
+      }
+    }
+  }
+
+  grade.score += grade.correctUnder * 10;
+  grade.score += grade.correctOver * 6;
+  grade.score += grade.incorrectUnder * 3;
+
+  return grade;
+}
+
+var numQuestions = 10;
+
+var timeLimit = 20;
+if (process.argv.length === 3 && !isNaN(process.argv[2])) {
+  timeLimit = process.argv[2];
+}
+
+var questions = generateQuestions(numQuestions);
+
+askAll(questions).then((answers) => {
+  var g = grade(questions, answers, timeLimit);
+  console.log(g);
+  console.log('SCORE: ' + g.score);
+
+  rl.close();
+});
+
+
+
+//display score
+
+

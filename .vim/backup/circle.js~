@@ -1,0 +1,6 @@
+const PI = 3.14;
+
+function getArea(radius) {
+    return PI * Math.pow(radius, 2);
+}
+

@@ -1,0 +1,12 @@
+// print numbers between min and max in lines of 10
+
+const MIN = 10;
+const MAX = 50;
+
+for (var i = MIN; i < MAX; ++i) {
+  process.stdout.write(i + ' ');
+
+  if ((i+1) % 10 == 0) process.stdout.write('asdf\n');
+
+}
+

@@ -1,0 +1,34 @@
+public class SeqSearch {
+  public static void main(String[] args) {
+    int[] arr1 = { 1, 3, 6, 9, 25, 31, 42, 73, 75, 99 };
+    int[] arr2 = { 3, 5, 8, 9, 22, 34, 43, 76, 81, 94 };
+
+    int target = 25;
+    boolean result1 = seqSearch(arr1, arr1.length, target);
+    boolean result2 = seqSearch(arr2, arr2.length, target);
+
+    System.out.println(result1);
+    System.out.println(result2);
+  }
+
+  public static boolean seqSearch(int[] x, int n, int t) {
+    boolean found = false;
+    int i = 1;
+
+    while(!found && i <= n) {
+      if (x[i] == t) {
+        found = true;
+      } else {
+        if (x[i] > t) {
+          i = n + 1;
+        } else {
+          i++;
+        }
+      }
+    }
+
+    return found;
+  }
+
+}
+

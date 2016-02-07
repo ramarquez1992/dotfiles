@@ -1,0 +1,11 @@
+<?php
+    $page_title = 'WSU UPAC App Administration';
+    include('header.inc');
+?>
+
+<h1>Edit Raffles</h1>
+
+<p>Hello, world.</p>
+
+<?php include('footer.inc'); ?>
+

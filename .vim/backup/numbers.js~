@@ -1,0 +1,61 @@
+exports = (typeof window === 'undefined') ? global : window;
+
+exports.numbersAnswers = {
+  valueAtBit: function(n, target) {
+                const INT_BITS = 32;
+
+                // Move target to far left
+                var result = n << (INT_BITS - target);
+
+                // Move target to far right, filling w/ zeroes
+                result = result >>> (INT_BITS - 1);
+
+                return result;
+
+  },
+
+  base10: function(str) {
+            var sum = 0;
+            var bits = str.split('');
+
+            for (var i = 0, power = (bits.length - 1); i < bits.length; ++i, --power) {
+              if (bits[i] == 1) {
+                sum += Math.pow(2, power);
+              }
+            }
+
+            return sum;
+
+  },
+
+  convertToBinary: function(num) {
+            var sum = 0;
+            var bits = [];
+
+            var power = 7;
+            while (power >= 0){
+              var j = Math.pow(2, power);
+
+              if (j <= num - sum) {
+                bits.push(1);
+                sum += j;
+              } else {
+                bits.push(0);
+              }
+
+              --power;
+            }
+              
+            return bits.join('');
+
+  },
+
+  multiply: function(a, b) {
+              var result = +(a*b).toFixed(8);
+
+              console.log(result);
+              return result;
+
+  }
+};
+
