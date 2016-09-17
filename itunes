@@ -1,0 +1,94 @@
+#!/bin/sh
+
+while [ $# -gt 0 ]; do
+  arg=$1;
+
+  case $arg in
+    "artist" )
+      state=`osascript -e 'tell application "iTunes" to player state as string'`;
+      text='';
+      if [ $state != 'stopped' ]; then
+        text=`osascript -e 'tell application "iTunes" to artist of current track as string'`;
+      fi
+      echo $text;
+      break;;
+
+    "track" )
+      state=`osascript -e 'tell application "iTunes" to player state as string'`;
+      text='';
+      if [ $state != 'stopped' ]; then
+        text=`osascript -e 'tell application "iTunes" to name of current track as string'`;
+      fi
+      echo $text;
+      break;;
+
+    "album" )
+      state=`osascript -e 'tell application "iTunes" to player state as string'`;
+      text='';
+      if [ $state != 'stopped' ]; then
+        text=`osascript -e 'tell application "iTunes" to album of current track as string'`;
+        text="($text)";
+      fi
+      echo $text;
+      break;;
+
+    "status" ) state=`osascript -e 'tell application "iTunes" to player state as string'`;
+      echo "iTunes is currently $state.";
+      if [ $state = "playing" ]; then
+        artist=`osascript -e 'tell application "iTunes" to artist of current track as string'`;
+        track=`osascript -e 'tell application "iTunes" to name of current track as string'`;
+        echo "Current track $artist:  $track";
+        echo;
+        tracks=`osascript -e 'tell application "iTunes" to get name of every track in current playlist'`;
+        export IFS=','
+        for t in ${tracks[@]}; do
+          echo "$t";
+        done
+      fi
+      break ;;
+
+    'start' ) echo 'Launching iTunes'
+      osascript -e 'tell application "iTunes" to launch';
+      break;;
+
+    "play"    ) echo "Playing iTunes.";
+      osascript -e 'tell application "iTunes" to play';
+      break ;;
+
+    "pause"    ) echo "Pausing iTunes.";
+      osascript -e 'tell application "iTunes" to pause';
+      break ;;
+
+    "next"    ) echo "Going to next track." ;
+      osascript -e 'tell application "iTunes" to next track';
+      break ;;
+
+    "prev"    ) echo "Going to previous track.";
+      osascript -e 'tell application "iTunes" to previous track';
+      break ;;
+
+    "mute"    ) echo "Muting iTunes volume level.";
+      osascript -e 'tell application "iTunes" to set mute to true';
+      break ;;
+
+    "unmute" ) echo "Unmuting iTunes volume level.";
+      osascript -e 'tell application "iTunes" to set mute to false';
+      break ;;
+
+    "vol"    ) echo "Changing iTunes volume level.";
+      if [ $2 -gt 0 ]; then
+        newvol=$2;
+      fi
+      osascript -e "tell application \"iTunes\" to set sound volume to $newvol";
+      break ;;
+
+    "stop"    ) echo "Stopping iTunes.";
+      osascript -e 'tell application "iTunes" to stop';
+      break ;;
+
+    "quit"    ) echo "Quitting iTunes.";
+      osascript -e 'tell application "iTunes" to quit';
+      exit 1 ;;
+  esac
+done
+

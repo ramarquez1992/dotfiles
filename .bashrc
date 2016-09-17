@@ -127,8 +127,10 @@ fi
 # Aliases
 export PAGER="most"
 alias ls="ls -lGFo"
+alias top="htop"
 alias reboot="sudo reboot"
 alias node="node --harmony --use_strict"
+alias arduino="/Applications/Arduino.app/Contents/MacOS/Arduino"
 
 # Prompts
 # Normal
