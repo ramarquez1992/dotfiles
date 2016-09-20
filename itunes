@@ -27,7 +27,7 @@ while [ $# -gt 0 ]; do
       text='';
       if [ $state != 'stopped' ]; then
         text=`osascript -e 'tell application "iTunes" to album of current track as string'`;
-        text="($text)";
+        text="[ $text ]";
       fi
       echo $text;
       break;;
