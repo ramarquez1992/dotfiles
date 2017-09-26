@@ -30,17 +30,22 @@ set noerrorbells
 filetype on
 filetype indent on
 filetype plugin on
+set nocp
 
-map <C-f> :NERDTreeToggle<CR>
-let NERDTreeQuitOnOpen = 1
-
-noremap <silent> <C-l> :TlistToggle<CR>
-let Tlist_GainFocus_On_ToggleOpen = 1
-let Tlist_Close_On_Select = 1
+map <C-f> :Vexplore<CR>
 
 map <C-n> :tabnext<CR>
 map <C-p> :tabprevious<CR>
 
 map U :redo<CR>
 
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+nnoremap <C-T> :tabnew<CR>
 
+let g:netrw_liststyle = 3
+let g:netrw_winsize = 25
+let g:netrw_browse_split = 4
+let g:netrw_banner=0
